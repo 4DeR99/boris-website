@@ -1,15 +1,30 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Kanit, Inter } from 'next/font/google'
 import './globals.css'
+import { Header } from '@/components/shared/Header'
+import { cn } from '@/lib/utils'
+import localFont from 'next/font/local'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const Satoshi = localFont({
+  src: [
+    {
+      path: '../../public/fonts/satoshi.ttf',
+      weight: '100 200 300 400 500 600 700 800 900',
+    },
+  ],
+  variable: '--font-satoshi',
+})
+
+const kanit = Kanit({
+  variable: '--font-kanit',
   subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -24,7 +39,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={cn(
+          kanit.variable,
+          kanit.className,
+          Satoshi.variable,
+          Satoshi.className,
+          inter.variable,
+          inter.className,
+          'w-full',
+        )}
+      >
+        <Header />
         {children}
       </body>
     </html>
