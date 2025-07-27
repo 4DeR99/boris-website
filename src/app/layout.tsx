@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/shared/Header'
 import { cn } from '@/lib/utils'
 import localFont from 'next/font/local'
+import { Footer } from '@/components/shared/Footer'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -42,16 +43,15 @@ export default function RootLayout({
       <body
         className={cn(
           kanit.variable,
-          kanit.className,
           Satoshi.variable,
-          Satoshi.className,
           inter.variable,
           inter.className,
-          'w-full',
+          'flex min-h-screen w-full flex-col',
         )}
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   )
