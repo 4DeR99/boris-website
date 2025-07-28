@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 export default {
   darkMode: ['class'],
@@ -9,7 +10,10 @@ export default {
   },
   theme: {
     extend: {
-      screens,
+      screens: {
+        ...screens,
+        xsm: '24.375rem',
+      },
       fontSize,
       fontFamily: {
         kanit: ['var(--font-kanit)'],
@@ -23,6 +27,7 @@ export default {
       },
       colors: {
         'light-gray': '#F0F0F0',
+        green: '#01AB31',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -96,6 +101,6 @@ export default {
     fluid({
       checkSC144: false,
     }),
-    require('tailwindcss-animate'),
+    tailwindcssAnimate,
   ],
 } satisfies Config

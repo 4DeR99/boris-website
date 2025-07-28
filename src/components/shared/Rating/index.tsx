@@ -19,10 +19,16 @@ const ratingStyles = cva('flex items-center gap-1', {
 
 interface RatingProps extends VariantProps<typeof ratingStyles> {
   value: number
+  showValue?: boolean
   className?: string
 }
 
-export const Rating = ({ value, size, className }: RatingProps) => {
+export const Rating = ({
+  value,
+  size,
+  showValue = true,
+  className,
+}: RatingProps) => {
   return (
     <div className={cn(ratingStyles({ size, className }))}>
       {Array.from({ length: 5 }, (_, index) => {
@@ -51,7 +57,7 @@ export const Rating = ({ value, size, className }: RatingProps) => {
           </div>
         )
       })}
-      <span className="text-sm font-medium">{value}</span>
+      {showValue && <span className="text-sm font-medium">{value}</span>}
     </div>
   )
 }

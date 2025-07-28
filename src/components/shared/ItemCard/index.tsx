@@ -23,14 +23,16 @@ export const ItemCard = ({ item, className }: ItemCardProps) => {
         />
       </Card>
       <div className="flex flex-col gap-1">
-        <h1 className="text-sm font-medium">{item.name}</h1>
+        <h1 className="truncate text-base font-bold lg:text-xl">{item.name}</h1>
         <div className="flex items-center gap-2">
           <Rating
             value={item.rating}
             size="sm"
           />
         </div>
-        <span className="text-sm font-medium">{item.price}$</span>
+        <span className="font-satoshi text-lg font-bold lg:text-2xl">
+          ${item.price}
+        </span>
       </div>
     </div>
   )

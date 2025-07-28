@@ -2,6 +2,12 @@ import { Button } from '@/components/ui/button'
 import { ItemCard } from '@/components/shared/ItemCard'
 import { Item } from '@/types/item'
 import React from 'react'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel'
+import { Title } from '@/components/system/Typography/Title'
 
 interface ItemsSectionProps {
   title: string
@@ -67,8 +73,8 @@ export const ItemsSection = ({
 }: ItemsSectionProps) => {
   return (
     <section className="flex flex-col items-center gap-12 py-3 ~my-6/10">
-      <h1 className="font-kanit text-5xl font-bold uppercase">{title}</h1>
-      <div className="flex w-full justify-between">
+      <Title>{title}</Title>
+      <div className="hidden w-full justify-between md:flex">
         {items.map((item: Item) => (
           <ItemCard
             key={item.id}
@@ -77,7 +83,27 @@ export const ItemsSection = ({
           />
         ))}
       </div>
-      {hasMore && <Button variant="outline">View More</Button>}
+      <Carousel className="w-full md:hidden">
+        <CarouselContent className="overflow-visible">
+          {items.map((item: Item) => (
+            <CarouselItem
+              key={item.id}
+              className="max-w-[200px]"
+            >
+              <ItemCard item={item} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+      {hasMore && (
+        <Button
+          className="w-full text-base sm:w-fit"
+          size="xl"
+          variant="outline"
+        >
+          View More
+        </Button>
+      )}
     </section>
   )
 }
