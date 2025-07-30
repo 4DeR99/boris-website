@@ -5,6 +5,8 @@ import { Header } from '@/components/shared/Header'
 import { cn } from '@/lib/utils'
 import localFont from 'next/font/local'
 import { Footer } from '@/components/shared/Footer'
+import { useUser } from '@/hooks/useUser'
+import Link from 'next/link'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -38,6 +40,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { user } = useUser()
+
   return (
     <html lang="en">
       <body
@@ -49,6 +53,17 @@ export default function RootLayout({
           'flex min-h-screen w-full flex-col',
         )}
       >
+        {!user && (
+          <div className="w-full bg-black px-4 py-3 text-center font-satoshi text-sm font-medium text-white">
+            Sign up and get 20% off to your first order.{' '}
+            <Link
+              href="/auth?authType=signup"
+              className="font-semibold underline"
+            >
+              Sign Up Now
+            </Link>
+          </div>
+        )}
         <Header />
         {children}
         <Footer />
